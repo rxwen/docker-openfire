@@ -20,15 +20,7 @@ Dockerfile to build a [Openfire](http://www.igniterealtime.org/projects/openfire
 
 ## Version
 
-Current Version: **3.9.3-3**
-
-# Contributing
-
-If you find this image useful here's how you can help:
-
-- Send a Pull Request with your awesome new features and bug fixes
-- Help new users with [Issues](https://github.com/sameersbn/docker-openfire/issues) they may encounter
-- Send me a tip via [Bitcoin](https://www.coinbase.com/sameersbn) or using [Gratipay](https://gratipay.com/sameersbn/)
+Current Version: **3.10.1**
 
 # Reporting Issues
 
@@ -62,20 +54,10 @@ In your issue report please make sure you provide the following information:
 
 Pull the `latest` version of the image from the docker index. This is the recommended method of installation as it is easier to update image in the future. These builds are performed by the **Docker Trusted Build** service.
 
-```bash
-docker pull sameersbn/openfire:latest
-```
-
-You can also pull a particular version of openfire by specifying the version. For example,
+You can build the image yourself.
 
 ```bash
-docker pull sameersbn/openfire:3.9.3-3
-```
-
-Alternately you can build the image yourself.
-
-```bash
-git clone https://github.com/sameersbn/docker-openfire.git
+git clone https://github.com/rxwen/docker-openfire.git
 cd docker-openfire
 docker build --tag="$USER/openfire" .
 ```
@@ -87,7 +69,7 @@ Run the openfire image
 ```bash
 docker run --name='openfire' -i -t --rm \
   -p 9090:9090 -p 5222:5222 -p 7777:7777 \
-  sameersbn/openfire:3.9.3-3
+  openfire:3.10.1
 ```
 
 Point your browser to `http://localhost:9090` and follow the setup procedure to complete the installation.
@@ -135,28 +117,6 @@ sudo docker-enter openfire
 ```
 
 For more information refer https://github.com/jpetazzo/nsenter
-
-# Upgrading
-
-To upgrade to newer releases, simply follow this 3 step upgrade procedure.
-
-- **Step 1**: Stop the currently running image
-
-```bash
-docker stop openfire
-```
-
-- **Step 2**: Update the docker image.
-
-```bash
-docker pull sameersbn/openfire:latest
-```
-
-- **Step 3**: Start the image
-
-```bash
-docker run -name openfire -d [OPTIONS] sameersbn/openfire:latest
-```
 
 # References
 
