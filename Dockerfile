@@ -1,9 +1,15 @@
-FROM sameersbn/ubuntu:14.04.20150613
-MAINTAINER sameer@damagehead.com
+FROM ubuntu
+MAINTAINER Raymond Wen
 
-ENV OPENFIRE_VERSION 3.9.3
-RUN apt-get update \
- && apt-get install -y openjdk-7-jre \
+ENV OPENFIRE_VERSION 3.10.1
+RUN sed -i 's/archive.ubuntu.com/mirrors.163.com/' /etc/apt/sources.list \
+ && echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
+ && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
+ && apt-get update \
+ && apt-get install -y vim.tiny wget sudo net-tools ca-certificates unzip \
+ && wget https://github.com/tianon/gosu/releases/download/1.4/gosu-amd64 -O /usr/local/bin/gosu \
+ && chmod +x /usr/local/bin/gosu
+RUN apt-get install -y openjdk-7-jre \
  && wget "http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_${OPENFIRE_VERSION}_all.deb" \
       -O /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
  && dpkg -i /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
