@@ -14,7 +14,7 @@ RUN apt-get install -y openjdk-7-jre \
       -O /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
  && dpkg -i /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
  && rm -rf openfire_${OPENFIRE_VERSION}_all.deb \
- && rm -rf /var/lib/apt/lists/* # 20150613
+ && rm -rf /var/lib/apt/lists/*
 
 ADD start /start
 RUN chmod 755 /start
