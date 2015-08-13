@@ -72,6 +72,12 @@ docker run --name='openfire' -i -t --rm \
   openfire:3.10.1
 ```
 
+or 
+
+```bash
+docker run --net="host" --name=openfire -d openfire
+```
+
 Point your browser to `http://localhost:9090` and follow the setup procedure to complete the installation.
 
 The following video by HAKK5 will help you with the configuration and give you an introduction to openfire and some of its features.
