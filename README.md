@@ -20,7 +20,7 @@ Dockerfile to build a [Openfire](http://www.igniterealtime.org/projects/openfire
 
 ## Version
 
-Current Version: **3.10.1**
+Current Version: **4.0.1**
 
 # Reporting Issues
 

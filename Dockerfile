@@ -1,7 +1,7 @@
 FROM ubuntu
 MAINTAINER Raymond Wen
 
-ENV OPENFIRE_VERSION 3.10.1
+ENV OPENFIRE_VERSION 4.0.1
 RUN sed -i 's/archive.ubuntu.com/mirrors.163.com/' /etc/apt/sources.list \
  && echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
