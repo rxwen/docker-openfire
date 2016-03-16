@@ -10,6 +10,11 @@ chown -R openfire:openfire /data/openfire
 if [ ! -d /data/openfire/etc ]; then
   mv /etc/openfire /data/openfire/etc
 fi
+
+if [ -d /docker-entrypoint-initcfg.d ]; then
+  cp -rf /docker-entrypoint-initcfg.d/* /data/openfire/etc
+fi
+
 rm -rf /etc/openfire
 ln -sf /data/openfire/etc /etc/openfire
 
