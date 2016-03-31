@@ -2,8 +2,7 @@ FROM ubuntu
 MAINTAINER Raymond Wen
 
 ENV OPENFIRE_VERSION 4.0.1
-RUN sed -i 's/archive.ubuntu.com/mirrors.163.com/' /etc/apt/sources.list \
- && echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
+RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && apt-get update \
  && apt-get install -y vim.tiny wget sudo net-tools ca-certificates unzip \
