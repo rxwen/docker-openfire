@@ -21,7 +21,7 @@ ln -sf /data/openfire/etc /etc/openfire
 if [ ! -d /data/openfire/lib ]; then
   mv /var/lib/openfire /data/openfire/lib
 fi
-rm -rf /var/lib/openfire
+mv /var/lib/openfire /var/lib/openfire.bak
 ln -sf /data/openfire/lib /var/lib/openfire
 
 echo "Starting openfire..."
