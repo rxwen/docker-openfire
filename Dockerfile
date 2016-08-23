@@ -1,20 +1,13 @@
-FROM ubuntu
+FROM anapsix/alpine-java
 MAINTAINER Raymond Wen
 
-ENV OPENFIRE_VERSION 4.0.1
-RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
- && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
- && apt-get update \
- && apt-get install -y vim.tiny wget sudo net-tools ca-certificates unzip \
- && wget https://github.com/tianon/gosu/releases/download/1.4/gosu-amd64 -O /usr/local/bin/gosu \
- && chmod +x /usr/local/bin/gosu
-RUN apt-get install -y openjdk-7-jre \
- && wget "http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_${OPENFIRE_VERSION}_all.deb" \
-      -O /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
- && dpkg -i /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
- && rm -rf openfire_${OPENFIRE_VERSION}_all.deb \
- && rm -rf /var/lib/apt/lists/*
-
+ENV OPENFIRE_VERSION 4_0_1
+RUN apk update
+RUN apk add ca-certificates
+RUN wget http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_${OPENFIRE_VERSION}.tar.gz -O /openfire.tar.gz && tar xvf /openfire.tar.gz && rm /openfire.tar.gz
+# hazelcast plugin must be named hazelcast.jar
+# list of openfire plugins: http://www.igniterealtime.org/projects/openfire/plugins.jsp
+RUN wget http://www.igniterealtime.org/projects/openfire/plugins/hazelcast.jar -O /openfire/plugins/hazelcast.jar
 ADD start /start
 RUN chmod 755 /start
 
@@ -29,5 +22,4 @@ EXPOSE 7777
 EXPOSE 9090
 EXPOSE 9091
 
-VOLUME ["/data"]
 CMD ["/start"]

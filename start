@@ -1,33 +1,8 @@
 #!/bin/bash
-set -e
-
-chmod 775 /data
-
-mkdir -p /data/openfire
-chown -R openfire:openfire /data/openfire
-
-# populate default openfire configuration if it does not exist
-if [ ! -d /data/openfire/etc ]; then
-  mv /etc/openfire /data/openfire/etc
-fi
-
-if [ -d /docker-entrypoint-initcfg.d ]; then
-  cp -rf /docker-entrypoint-initcfg.d/* /data/openfire/etc
-fi
-
-rm -rf /etc/openfire
-ln -sf /data/openfire/etc /etc/openfire
-
-if [ ! -d /data/openfire/lib ]; then
-  mv /var/lib/openfire /data/openfire/lib
-fi
-mv /var/lib/openfire /var/lib/openfire.bak
-ln -sf /data/openfire/lib /var/lib/openfire
-
 echo "Starting openfire..."
-exec gosu openfire /usr/bin/java \
-  -server \
-  -DopenfireHome=/usr/share/openfire \
-  -Dopenfire.lib.dir=/usr/share/openfire/lib \
-  -classpath /usr/share/openfire/lib/startup.jar \
-  -jar /usr/share/openfire/lib/startup.jar
+exec /opt/jdk/bin/java \
+      -server \
+      -DopenfireHome=/openfire/ \
+      -Dopenfire.lib.dir=/openfire/lib \
+      -classpath /openfire/.install4j/i4jruntime.jar:/openfire/lib/bcpg-jdk15on.jar:/openfire/lib/bcpkix-jdk15on.jar:/openfire/lib/bcprov-jdk15on.jar:/openfire/lib/hsqldb.jar:/openfire/lib/javax.websocket-api.jar:/openfire/lib/jtds.jar:/openfire/lib/mail.jar:/openfire/lib/mysql.jar:/openfire/lib/npn-boot.jar:/openfire/lib/openfire.jar:/openfire/lib/postgres.jar:/openfire/lib/slf4j-log4j12.jar:/openfire/lib/startup.jar \
+      -jar /openfire/lib/startup.jar
