@@ -8,6 +8,8 @@ RUN wget http://www.igniterealtime.org/downloadServlet?filename=openfire/openfir
 # hazelcast plugin must be named hazelcast.jar
 # list of openfire plugins: http://www.igniterealtime.org/projects/openfire/plugins.jsp
 RUN wget http://www.igniterealtime.org/projects/openfire/plugins/hazelcast.jar -O /openfire/plugins/hazelcast.jar
+RUN wget https://www.igniterealtime.org/projects/openfire/plugins/restAPI.jar -O /openfire/plugins/restAPI.jar
+RUN wget https://www.igniterealtime.org/projects/openfire/plugins/presence.jar -O /openfire/plugins/presence.jar
 ADD start /start
 RUN chmod 755 /start
 
