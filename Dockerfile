@@ -1,7 +1,7 @@
 FROM anapsix/alpine-java
 MAINTAINER Raymond Wen
 
-ENV OPENFIRE_VERSION 4_0_3
+ENV OPENFIRE_VERSION 4_0_4
 RUN apk update
 RUN apk add ca-certificates
 RUN wget http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_${OPENFIRE_VERSION}.tar.gz -O /openfire.tar.gz && tar xvf /openfire.tar.gz && rm /openfire.tar.gz
