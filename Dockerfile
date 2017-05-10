@@ -1,7 +1,7 @@
 FROM anapsix/alpine-java
 MAINTAINER Raymond Wen
 
-ENV OPENFIRE_VERSION 4_1_3
+ENV OPENFIRE_VERSION 4_1_4
 RUN apk update && apk add ca-certificates wget
 RUN wget http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_${OPENFIRE_VERSION}.tar.gz -O /openfire.tar.gz && tar xvf /openfire.tar.gz && rm /openfire.tar.gz
 # hazelcast plugin must be named hazelcast.jar
